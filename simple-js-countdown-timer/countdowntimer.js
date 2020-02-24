@@ -7,6 +7,7 @@ function CountDownTimer(duration, granularity) {
   this.running = false;
   this.expired = false;
   this.paused = false;
+  this.autoStartNext = false;
   this.pausedTime = 0;
   this.pausedTimeStamp = 0;
   this.timerID;
@@ -83,6 +84,10 @@ CountDownTimer.prototype.isRunning = function() {
   return this.running && !this.paused;
 };
 
+CountDownTimer.prototype.isPaused = function() {
+  return this.running && this.paused;
+};
+
 CountDownTimer.prototype.stop = function() {
   this.running = false;
   this.paused = false;
@@ -115,6 +120,14 @@ CountDownTimer.prototype.setDuration = function(duration) {
 
 CountDownTimer.prototype.setGranularity = function(granularity) {
   this.granularity = granularity;
+};
+
+CountDownTimer.prototype.setAutoStartNext = function(autoStartNext) {
+  this.autoStartNext = autoStartNext;
+};
+
+CountDownTimer.prototype.getAutoStartNext = function(autoStartNext) {
+  return this.autoStartNext;
 };
 
 CountDownTimer.parse = function(seconds) {
